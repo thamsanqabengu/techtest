@@ -1,0 +1,6 @@
+C:\Development\The Geek\Website\websitePhonebook\bin\websitePhonebook.dll.config
+C:\Development\The Geek\Website\websitePhonebook\bin\websitePhonebook.dll
+C:\Development\The Geek\Website\websitePhonebook\bin\websitePhonebook.pdb
+C:\Development\The Geek\Website\websitePhonebook\obj\Debug\websitePhonebook.csprojAssemblyReference.cache
+C:\Development\The Geek\Website\websitePhonebook\obj\Debug\websitePhonebook.dll
+C:\Development\The Geek\Website\websitePhonebook\obj\Debug\websitePhonebook.pdb

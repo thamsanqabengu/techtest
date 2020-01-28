@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>home | Any Company | Orders</title>
+    <base href="/AnyCompanyWebsite/">
+    <link rel="icon" href="images/fooddome.ico">
+    <!-- jQuery UI -->
+    <link rel="stylesheet" type="text/css" href="css/jquery/jquery-ui.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+    <!-- Owl-coursel -->
+    <link rel="stylesheet" type="text/css" href="css/owl-coursel/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/owl-coursel/owl.theme.css">
+    <link rel="stylesheet" type="text/css" href="css/owl-coursel/owl.transitions.css">
+    <!-- Font-awesome -->
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <!-- Animate -->
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <!-- Fw -->
+    <link rel="stylesheet" type="text/css" href="css/fw.css">
+    <!-- Style-->
+    <link rel="stylesheet" type="text/css" href="css/style/finder.css">
+    <link rel="stylesheet" type="text/css" href="css/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/angular-datepicker.min.css" />
+</head>
+<body ng-app="app" ng-controller="orders as vm" ng-cloak>
+    <div class="preloader"><i class="fa fa-spinner"></i></div>
+    <header class="header-absolute smaller">
+        <div class="top-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 hidden-xs hidden-sm">
+                        <ul class="top-link">
+                            <li><i class="glyphicon glyphicon-list m-r-5"></i>Orders - <i>Your orders at your finger tips.</i></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <ul class="top-link pull-right">
+                            <li><a href=""><span class="glyphicon glyphicon-info-sign m-r-5"></span>Help center</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="block">
+        <div class="container">
+            <div class="row bg-4f84c4 thumb-item dashboard-menu">
+                <div class="col-md-12">
+                    <img src="images/fooddome.png" style="width:10%; height:10%" />
+                    <div class="col-sm-12 alert alert-primary">
+                        <div class="panel-group" id="vieworders" role="tablist" aria-multiselectable="false">
+                            <div class="panel panel-info">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h4 class="panel-title">
+                                        <i class="glyphicon glyphicon-earphone m-r-5"></i><br /><br />
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                           href="#orders" aria-expanded="false" aria-controls="collapseThree">
+                                            Click to View Orders
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="orders" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="panel-body">
+                                        <div class="col-md-12 alert alert-info">
+                                            <table id="tblOrders" class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>First Name</th>
+                                                        <th>Last Name</th>
+                                                        <th>Phone Number</th>
+                                                        <th>Email Address</th>
+                                                        <th>Order Description</th>
+                                                        <th>Amount</th>
+                                                        <th>Created</th>
+                                                        <th>&nbsp;</th>
+                                                        <th>&nbsp;</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                            <div class="alert alert-default">
+                                                <button type="button" class="btn btn-info form-control" ng-click="vm.addOrderEntry()">
+                                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp;<strong>Add Order</strong>
+                                                </button>
+                                            </div>
+                                            <div ng-show="vm.ViewOrderEntry" class="alert alert-info">
+                                                <ng-form id="orderForm" name="orderForm">
+                                                    <div class="row">
+                                                        <div class="form-group col-sm-12">
+                                                            <button type="button" class="btn btn-primary pull-right" ng-click="vm.saveAll()">Save</button>
+                                                            <button type="button" class="btn btn-danger pull-right" ng-click="vm.cancelOrderEntry()">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-sm-3">
+                                                            <label class="control-label">Customer </label>
+                                                        </div>
+                                                        <div class="input-group col-sm-6 fifty-percent-of-width">
+                                                            <div class="styled-select semi-square">
+                                                                <select ng-options="v.CustomerId as v.FirstName for v in vm.Customer"
+                                                                        name="customer" class="form-control dropdown dropdown-toggle"
+                                                                        ng-model="vm.OrderEntry.CustomerId"></select>
+                                                            </div>
+
+                                                        </div>
+                                                        <p class="col-sm-offset-3 text-danger" ng-show="orderForm.Customer.$error.required">Customer is required.</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-sm-3">
+                                                            <label class="control-label">Menu Item </label>
+                                                        </div>
+                                                        <div class="input-group col-sm-6 fifty-percent-of-width">
+                                                            <div class="styled-select semi-square">
+                                                                <select ng-options="v.MenuItemId as v.MenuItem for v in vm.Menu"
+                                                                        name="menuitem" class="form-control dropdown dropdown-toggle"
+                                                                        ng-model="vm.OrderEntry.MenuItemId"></select>
+                                                            </div>
+
+                                                        </div>
+                                                        <p class="col-sm-offset-3 text-danger" ng-show="orderForm.MenuItem.$error.required">Menu Item is required.</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-sm-3">
+                                                            <label class="control-label">First Name  </label>
+                                                        </div>
+                                                        <div class="input-group col-sm-6 fifty-percent-of-width">
+                                                            <input id="FirstName" name="FirstName" required placeholder="First Name"
+                                                                   ng-model="vm.OrderEntry.FirstName"
+                                                                   class="form-control" ng-form="orderForm" />
+
+                                                        </div>
+                                                        <p class="col-sm-offset-3 text-danger" ng-show="orderForm.FirstName.$error.required">First Name is required.</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-sm-3">
+                                                            <label class="control-label">Last Name  </label>
+                                                        </div>
+                                                        <div class="input-group col-sm-6 fifty-percent-of-width">
+                                                            <input id="LastName" name="LastName" required placeholder="Last Name"
+                                                                   ng-model="vm.OrderEntry.LastName"
+                                                                   class="form-control" ng-form="orderForm" />
+
+                                                        </div>
+                                                        <p class="col-sm-offset-3 text-danger" ng-show="orderForm.LastName.$error.required">Last Name is required.</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-sm-3">
+                                                            <label class="control-label">Phone Number  </label>
+                                                        </div>
+                                                        <div class="input-group col-sm-6 fifty-percent-of-width">
+                                                            <input id="PhoneNumber" name="PhoneNumber" required placeholder="Phone Number"
+                                                                   ng-model="vm.OrderEntry.PhoneNumber"
+                                                                   class="form-control" ng-form="orderForm" />
+
+                                                        </div>
+                                                        <p class="col-sm-offset-3 text-danger" ng-show="orderForm.PhoneNumber.$error.required">Phone Number is required.</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-sm-3">
+                                                            <label class="control-label">Email Address  </label>
+                                                        </div>
+                                                        <div class="input-group col-sm-6 fifty-percent-of-width">
+                                                            <input id="EmailAddress" name="EmailAddress" required placeholder="Email Address"
+                                                                   ng-model="vm.OrderEntry.EmailAddress"
+                                                                   class="form-control" ng-form="orderForm" />
+
+                                                        </div>
+                                                        <p class="col-sm-offset-3 text-danger" ng-show="orderForm.EmailAddress.$error.required">Email Address is required.</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-sm-12">
+                                                            <button type="button" class="btn btn-primary pull-right" ng-click="vm.saveAll()">Save</button>
+                                                            <button type="button" class="btn btn-danger pull-right" ng-click="vm.cancelOrderEntry()">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </ng-form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-2">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 m-b-xs-30">
+                        <i class="glyphicon glyphicon-list m-r-5"></i>Phonebook - <i>Your people at your finger tips.</i>
+                        <ul class="list-inline m-t-20">
+                            <li><a href="#"><i class="fa fa-facebook icon icon-40 rad-3 bg-4f84c4"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google icon icon-40 rad-3 bg-f2552c"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter icon icon-40 rad-3 bg-95dee3"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram icon icon-40 rad-3 bg-fe718b"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom bg-1">
+            <div class="container">
+                <p>© 2019 Designed by <a href="http://www.thegeek.co.za" class="color-9">The Geek</a>. All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Angular App -->
+    <script src="js/angular.min.js"></script>
+    <!-- jQuery -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Bootstrap -->
+    <!--<script src="js/bootstrap/bootstrap.min.js"></script>-->
+    <!-- Owl-coursel -->
+    <script src="js/owl-coursel/owl.carousel.js"></script>
+    <!-- Classie -->
+    <script src="js/classie.js"></script>
+    <!-- Script -->
+    <script src="js/script.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="js/datatables.min.js"></script>
+    <script type="text/javascript" src="js/js.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="js/tab.js"></script>
+    <script type="text/javascript" src="js/angular-datepicker.min.js"></script>
+    <script type="text/javascript" src="js/angular-overlay.js"></script>
+    <script type="text/javascript" src="js/angular-loading-overlay-http-interceptor.js"></script>
+    <script type="text/javascript" src="js/app/app.js"></script>
+    <script type="text/javascript" src="js/app/orders.js"></script>
+    <script type="text/javascript">
+
+        //var baseurl = 'http://localhost/anycompanywebapi/api';
+        var baseurl = 'http://localhost:51518/api';
+
+        var table = $('#tblOrders').DataTable({
+            "ajax": {
+                "url": baseurl + "/orders/",
+                "type": "GET",
+                "datatype": "json", "dataSrc": "_orders"
+            },
+            "columns": [
+                { "data": "FirstName", "autoWidth": true },
+                { "data": "LastName", "autoWidth": true },
+                { "data": "PhoneNumber", "autoWidth": true },
+                { "data": "EmailAddress", "autoWidth": true },
+                { "data": "MenuItem", "autoWidth": true },
+                { "data": "Amount", "autoWidth": true },
+                { "data": "CreateDate", "autoWidth": true },
+                {
+                    "mData": null, "bSortable": false, "mRender": function (data, type, full, meta) {
+                        return "<a id='link' class='btn btn-info btn-sm' href='?viewid=" + meta.row
+                            + "'><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>";
+                    }
+                },
+                {
+                    "mData": null, "bSortable": false, "mRender": function (data, type, full) {
+                        return "<a id='link' class='btn btn-danger btn-sm' href='?deletepid=" + meta.row
+                            + "'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>";
+                    }
+                }
+            ]
+        });
+    </script>
+</body>
+</html>

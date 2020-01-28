@@ -1,0 +1,6 @@
+C:\Development\Tests\tech-test-master\TechTest\AnyCompanyWebsite\bin\AnyCompanyWebsite.dll.config
+C:\Development\Tests\tech-test-master\TechTest\AnyCompanyWebsite\bin\AnyCompanyWebsite.dll
+C:\Development\Tests\tech-test-master\TechTest\AnyCompanyWebsite\bin\AnyCompanyWebsite.pdb
+C:\Development\Tests\tech-test-master\TechTest\AnyCompanyWebsite\obj\Debug\AnyCompanyWebsite.csprojAssemblyReference.cache
+C:\Development\Tests\tech-test-master\TechTest\AnyCompanyWebsite\obj\Debug\AnyCompanyWebsite.dll
+C:\Development\Tests\tech-test-master\TechTest\AnyCompanyWebsite\obj\Debug\AnyCompanyWebsite.pdb

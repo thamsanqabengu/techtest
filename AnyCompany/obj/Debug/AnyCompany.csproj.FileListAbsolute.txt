@@ -1,0 +1,4 @@
+C:\Development\Tests\tech-test-master\TechTest\AnyCompany\bin\Debug\AnyCompany.dll
+C:\Development\Tests\tech-test-master\TechTest\AnyCompany\bin\Debug\AnyCompany.pdb
+C:\Development\Tests\tech-test-master\TechTest\AnyCompany\obj\Debug\AnyCompany.dll
+C:\Development\Tests\tech-test-master\TechTest\AnyCompany\obj\Debug\AnyCompany.pdb
